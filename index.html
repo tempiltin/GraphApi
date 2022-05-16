@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,32 +8,50 @@
     <link rel="stylesheet" href="./style/style.css">
     <title>Instagram || Graph || Api</title>
 </head>
+
 <body>
     <h1>hello world</h1>
+    <button onclick="FB.getLoginStatus()">button</button>
 
     <script src="./lbs/jquery.js"></script>
     <script src="./script/script.js"></script>
-    
-<script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '{your-app-id}',
-        cookie     : true,
-        xfbml      : true,
-        version    : '{api-version}'
-      });
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '{your-app-id}',
+                cookie: true,
+                xfbml: true,
+                version: '{api-version}'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
         
-      FB.AppEvents.logPageView();   
+
         
-    };
-  
-    (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "https://connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
-  </script>
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}
+
+
+    </script>
 </body>
+
 </html>
